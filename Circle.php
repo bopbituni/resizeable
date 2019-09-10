@@ -1,12 +1,14 @@
 <?php
 include_once "Resizeable.php";
+include_once "Shape.php";
 
-class Circle implements Resizeable
+class Circle extends Shape implements Resizeable
 {
     public $radius;
 
-    public function __construct($radius)
+    public function __construct($name, $radius)
     {
+        parent::__construct($name);
         $this->radius = $radius;
     }
 
@@ -23,8 +25,9 @@ class Circle implements Resizeable
         return pi() * pow($this->radius, 2);
     }
 
-    public function resize()
+    public function resize($circleObject)
     {
-        return $this->area()*rand(1,100);
+        $calculator = $circleObject->area();
+        return $calculator * rand(1, 100);
     }
 }

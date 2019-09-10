@@ -1,13 +1,15 @@
 <?php
 include_once "Resizeable.php";
+include_once "Shape.php";
 
-class Rectangle implements Resizeable
+class Rectangle extends Shape implements Resizeable
 {
     public $width;
     public $height;
 
-    public function __construct($width, $height)
+    public function __construct($name, $width, $height)
     {
+        parent::__construct($name);
         $this->width = $width;
         $this->height = $height;
     }
@@ -30,11 +32,12 @@ class Rectangle implements Resizeable
 
     public function area()
     {
-        return $this->getWidth()*$this->getHeight();
+        return $this->getWidth() * $this->getHeight();
     }
 
-    public function resize()
+    public function resize($rectangleObject)
     {
-        return $this->area()*rand(1,100);
+        $calculator = $rectangleObject->area();
+        return $calculator * rand(1, 100);
     }
 }
